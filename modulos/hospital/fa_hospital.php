@@ -75,29 +75,15 @@
             <div class="form-row">
 
                 <div class="form-group col-md-6">
-                    <label>DESCRIPCIÓN:</label>
-                    <textarea class="form-control" id="viDescripcion" name="viDescripcion" rows="3"><?= $descripcion ?></textarea>
+                    <label>Telefono:</label>
+                    <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label><?= ($editar) ? "CAMBIAR IMAGEN:" : "AÑADIR IMAGEN:" ?></label>
-                    <input type="file" class="form-control" id="viImagen" name="viImagen" accept=".png, .jpg, .jpeg">
-
-                    <?php if ($editar && $archivoImagenExiste) { ?>
-
-                        <div class="th-vizualizar-imagenes">
-                            <img src="<?php echo $archivoImagen; ?>" alt="imagen" />
-                        </div>
-
-                    <?php }
-                    if ($editar && !$archivoImagenExiste) { ?>
-
-                        <div class="th-vizualizar-imagenes">
-                            <p>NO SE HA CARGADO EL ARCHIVO</p>
-                        </div>
-
-                    <?php } ?>
+                    <label>Correo:</label>
+                    <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
                 </div>
+
             </div>
 
             <div class="form-row">
