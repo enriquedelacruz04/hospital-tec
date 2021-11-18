@@ -60,17 +60,15 @@
             <div class="form-row">
 
                 <div class="form-group col-md-6">
-                    <label>TITULO:</label>
+                    <label>Nombre:</label>
                     <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label>ESTATUS:</label>
-                    <select class="form-control" id="viEstatus" name="viEstatus">
-                        <option value="1" <?= ($estatus == 1) ? 'selected="selected"' : "" ?>>ACTIVO</option>
-                        <option value="0" <?= ($estatus == 0) ? 'selected="selected"' : "" ?>>NO ACTIVO</option>
-                    </select>
+                    <label>Direccion:</label>
+                    <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
                 </div>
+
 
             </div>
 
