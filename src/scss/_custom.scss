@@ -1,0 +1,698 @@
+////////////////////////////////////////  layaout
+////////////////////////////////////////  layaout
+
+body {
+    font-family: $fuente-principal !important;
+}
+
+img {
+    max-width: 100%;
+}
+
+.page-wrapper {
+    background-color: $body;
+}
+
+#main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .page-wrapper {
+        flex: 1 !important;
+
+        display: flex;
+        flex-direction: column;
+
+        .container-fluid {
+            flex: 1 !important;
+        }
+    }
+
+    .footer.text-center {
+        font-size: 1rem;
+        font-weight: 300;
+    }
+}
+
+//////////////////////////////////////// login
+//////////////////////////////////////// login
+
+.auth-box.border-top {
+    box-shadow: 8px 9px 23px -6px rgb(0 0 0 / 23%) !important;
+    border-radius: 20px;
+    padding: 2rem 3rem !important;
+    border: 1px solid rgb(240, 240, 240);
+    max-width: 400px !important;
+    transition: all 0.4s;
+
+    &:hover {
+        box-shadow: 8px 9px 23px -6px rgb(0 0 0 / 43%) !important;
+    }
+
+    .form-control {
+        box-shadow: 7px 6px 14px -8px rgb(0 0 0 / 32%) !important;
+        border-radius: 9px !important;
+        border: 1px solid rgb(240, 240, 240) !important;
+        padding-left: 4rem !important;
+        transition: all 0.4s;
+        &::placeholder {
+            color: rgb(169, 169, 169);
+            font-size: 1em;
+        }
+
+        &:hover {
+            box-shadow: 7px 6px 14px -8px rgb(0 0 0 / 70%) !important;
+        }
+    }
+
+    .form-horizontal {
+        .input-group {
+            .fas {
+                font-size: 1.5rem;
+                color: $primario;
+                position: absolute;
+                z-index: 999999999;
+                top: 10px;
+                left: 12px;
+            }
+        }
+    }
+
+    .alert-danger {
+        background-color: $incorrecto;
+        border: none;
+        color: white;
+    }
+    .alert-success {
+        background-color: $correcto;
+        border: none;
+        color: white;
+    }
+}
+
+//////////////////////////////////////// BARRA
+//////////////////////////////////////// BARRA
+
+.header {
+    background-color: $color-barra;
+    // padding: 1rem;
+    min-height: 50px;
+    z-index: 99;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__logo-text {
+        padding: 0.5rem 1.4rem 0.5rem 3.3rem;
+        p {
+            font-size: 1.4rem;
+            font-weight: 100;
+            color: $primario;
+            margin: 0;
+
+            @include custom(800px) {
+                font-size: 1.7rem;
+            }
+        }
+    }
+
+    &__logo {
+        margin-right: 1rem;
+
+        @include telefono {
+            margin-right: 2rem;
+        }
+        img {
+            cursor: pointer;
+            width: 30px;
+            transition: all 0.3s;
+
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+    }
+}
+
+//////////////////////////////////////// MENU MOVIL
+//////////////////////////////////////// MENU MOVIL
+
+.th-boton-mostrar {
+    font-size: 12px !important;
+    z-index: 99 !important;
+    @include tablet {
+        display: none !important;
+    }
+}
+
+.th-esconder-sidebar {
+    left: 0 !important;
+    z-index: 9 !important;
+}
+
+.burger {
+    margin-left: 1rem;
+    display: flex;
+    justify-content: flex-end;
+
+    &__content {
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.5s;
+        transform: translate3d(0px, 0px, 0px);
+
+        &:hover {
+            .burger__layer--top {
+                transform: translateY(-100%);
+            }
+            .burger__layer--bottom {
+                transform: translateY(100%);
+            }
+        }
+    }
+
+    &__layer {
+        background-color: white;
+        border-radius: 5px;
+        width: 28px;
+        height: 3px;
+        transition: all 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+    }
+    @include tablet {
+        display: none;
+    }
+
+    &--active {
+        opacity: 0;
+    }
+}
+
+//////////////////////////////////////// sidebar
+//////////////////////////////////////// sidebar
+
+.left-sidebar {
+    transition: 0.5s;
+    //----------------------  iconos
+    .th-sidebar-icon {
+        font-size: 1.5rem;
+        margin-right: 10px !important;
+        // transition: all 0.6s;
+    }
+
+    //----------------------  iconos
+    .th-sidebar-sub-icon {
+        font-size: 1.2rem !important;
+        margin-right: 10px !important;
+        transition: all 0.3s;
+        margin-left: 15px;
+        color: black;
+    }
+
+    // .sidebar-link {
+    //     transition: all 0.3s;
+    // }
+
+    .th-link-submenu {
+        transition: all 0.3s;
+        color: black !important;
+        transition: all 0.3s;
+
+        &:hover {
+            color: $primario !important;
+            opacity: 1 !important;
+        }
+    }
+
+    .sidebar-item {
+        padding-top: 0.5rem;
+        // padding-bottom: 0.5rem;
+
+        .collapse {
+            background-color: $color-barra-menus !important;
+        }
+
+        //---------------------- animacion
+        &:hover {
+            .th-link-menu {
+                transform: rotateY(20deg);
+            }
+
+            .th-sidebar-icon {
+                transform: rotatey(180deg);
+                color: $primario !important;
+            }
+        }
+
+        //---------------------- animacion
+        // .sidebar-item {
+        //     transition: all 0.3s;
+
+        //     &::after {
+        //         content: "";
+        //         display: block;
+        //         background: $primario;
+        //         height: 3px;
+        //         width: 0%;
+        //         transition: all 0.6s;
+        //     }
+
+        //     &:hover {
+        //         .th-link-submenu {
+        //             transform: translateX(12px);
+        //         }
+        //         .th-sidebar-sub-icon {
+        //             transform: scale(1.3);
+        //             color: $primario !important;
+        //         }
+        //     }
+        // }
+    }
+}
+
+//////////////////////////////////////// animacions de los menus desde js
+//////////////////////////////////////// animacions de los menus desde js
+
+.sidebar-animate {
+    &::after {
+        width: 100% !important;
+    }
+
+    .th-link-submenu {
+        opacity: 1 !important;
+    }
+
+    .th-sidebar-sub-icon,
+    span {
+        color: $primario;
+    }
+}
+
+//////////////////////////////////////// TABLAS
+//////////////////////////////////////// TABLAS
+
+.table-responsive {
+    thead {
+        th {
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+            text-align: center;
+            align-content: center;
+            // vertical-align: middle !important;
+        }
+    }
+
+    tbody {
+        td {
+            text-align: center !important;
+        }
+    }
+
+    .table.dataTable {
+        border-collapse: collapse !important;
+    }
+}
+
+//////////////////////////////////////// paginacion
+//////////////////////////////////////// paginacion
+
+.pagination {
+    margin-top: 1rem !important;
+}
+
+.dataTables_info,
+.dataTables_length,
+.dataTables_filter,
+.dataTables_empty,
+.pagination {
+    text-transform: uppercase;
+}
+
+.dataTables_filter {
+    input {
+        padding-left: 2rem;
+    }
+    label {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            left: 14px;
+            top: 3px;
+            content: "🔎";
+            display: block;
+            height: 3px;
+            width: 5px;
+            color: black;
+            // z-index: 999;
+        }
+    }
+}
+
+//////////////////////////////////////// checkbox
+//////////////////////////////////////// checkbox
+
+.card {
+    .check_custom {
+        //---------------------- Se aplica para  alinear los elemntos
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+
+        //---------------------- Este sera el checkbox personalizado
+        input[type="checkbox"] {
+            appearance: none;
+            cursor: pointer;
+
+            content: "";
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+            border-radius: 50%;
+            border: 1px solid rgb(158, 158, 158);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        //---------------------- hover al check
+        input[type="checkbox"]:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        //---------------------- background al check
+        input[type="checkbox"]:checked {
+            background-color: #1eda53;
+        }
+
+        //---------------------- Este sera la flecha dentro del checkbox
+        input[type="checkbox"]:checked:after {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 600;
+            font-size: 12px;
+            color: rgb(255, 255, 255);
+            transition: all 0.2s;
+        }
+    }
+}
+
+//////////////////////////////////////// cards
+//////////////////////////////////////// cards
+
+.th-card-titulo {
+    border-radius: 8px !important;
+    background-color: $gris-card !important;
+    box-shadow: 8px 7px 8px -5px rgb(127 127 127 / 49%);
+
+    .card-header {
+        background-color: transparent !important;
+        .card-title {
+            font-size: 1.1rem;
+            margin-right: 2rem;
+        }
+
+        &--black {
+            color: rgb(56, 56, 56);
+            font-weight: 600;
+
+            .card-title {
+                font-size: 0.95rem;
+            }
+        }
+
+        // posisionamiento de los botones
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include tablet {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .card-botones {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+
+            @include tablet {
+                margin-top: 0;
+            }
+
+            button {
+                // background-color: $primario;
+                // border: none !important;
+                margin-left: 0.5rem;
+                margin-bottom: 0.5rem;
+                border-radius: 5px;
+                // box-shadow: 5px 5px 5px -5px rgb(0 0 0 / 62%);
+                transition: all 0.3s;
+
+                @include tablet {
+                    margin-bottom: 0;
+                }
+                &:hover {
+                    // background-color: $primario-hover;
+                    box-shadow: 5px 5px 14px -10px rgb(0 0 0 / 90%);
+                }
+            }
+        }
+    }
+
+    &--sub {
+        background-color: $gris-card-sub !important;
+        box-shadow: none;
+        .card-header {
+            // display: flex;
+            // flex-direction: column ;
+            // align-items: flex-start;
+            .card-title {
+                font-size: 0.8rem;
+                margin-right: 2rem;
+            }
+        }
+    }
+}
+
+.th-card-subtitulo {
+    border-radius: 8px !important;
+    background-color: $gris-card !important;
+    box-shadow: 8px 7px 8px -5px rgb(127 127 127 / 49%);
+    .card-header {
+        background-color: transparent !important;
+        .card-title {
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem !important;
+            margin-top: 0.3rem;
+
+            &:nth-child(1) {
+                font-size: 1rem;
+                cursor: pointer;
+                margin-bottom: 0.7rem;
+            }
+        }
+    }
+}
+
+.th-card-table {
+    background-color: $blanco-card !important;
+    border-radius: 15px !important;
+    box-shadow: 6px 6px 15px -5px rgb(0 0 0 / 10%);
+}
+
+//////////////////////////////////////// Botones de tabla
+//////////////////////////////////////// Botones de tabla
+
+.card {
+    table tbody button {
+        box-shadow: 5px 5px 14px -10px rgb(0 0 0 / 40%) !important;
+        background-color: transparent !important;
+        border: 1px solid rgb(243, 243, 243) !important;
+        transition: all 0.3s;
+
+        .fas,
+        .far {
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .fa-pencil-alt {
+            color: $correcto;
+        }
+        .fa-trash-alt {
+            color: $incorrecto;
+        }
+
+        &:hover {
+            box-shadow: 3px 3px 8px -4px rgb(0 0 0 / 78%) !important;
+            .fas,
+            .far {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+//////////////////////////////////////// modal
+//////////////////////////////////////// modal
+
+.th-modal {
+    // max-width: 900px !important;
+
+    .modal-dialog {
+        max-width: 100%;
+        margin: 4rem auto 1rem auto;
+
+        @include telefono {
+            max-width: 90%;
+        }
+        @include tablet {
+            max-width: 80%;
+        }
+        @include desktop {
+            margin: 7rem auto 1rem auto;
+            max-width: 75%;
+        }
+    }
+}
+
+//////////////////////////////////////// media object
+//////////////////////////////////////// media object
+
+.th-modal {
+    .list-group-item.active {
+        background-color: $color-success;
+        border-color: $color-success;
+    }
+
+    .tab-content > .active {
+        background-color: #f6f6f6;
+    }
+
+    .tab-content {
+        padding: 1.5rem;
+        background-color: #f6f6f6;
+        border-radius: 10px;
+    }
+
+    .th-modal-item {
+        cursor: pointer;
+        border-bottom: 3px solid #dadada;
+
+        .list-unstyled {
+            margin: 0.5rem 0;
+        }
+        img {
+            width: 50px;
+        }
+
+        .media {
+            align-items: center !important;
+            padding: 0 0.5rem;
+            transition: all 0.3s;
+            height: 65px;
+
+            &:hover {
+                transform: scale(1.03);
+            }
+        }
+
+        h5 {
+            margin-bottom: 0;
+        }
+
+        &--active {
+            li {
+                border: 5px solid #131f3194;
+                border-radius: 7px;
+            }
+        }
+    }
+}
+//////////////////////////////////////// VER
+//////////////////////////////////////// VER
+
+.th-vizualizar-imagenes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 2rem auto;
+
+    img {
+        width: 100%;
+        max-height: 300px;
+
+        @include desktop {
+            width: 70%;
+            max-height: 350px;
+        }
+    }
+    p {
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.th-vizualizar-documentos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    a {
+        margin: 0;
+        margin-left: 2rem;
+    }
+    p {
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+//////////////////////////////////////// otros
+//////////////////////////////////////// otros
+
+.th_texto-rojo {
+    color: rgb(218, 82, 82);
+}
+
+#archivoSelect {
+    p {
+        margin: 0;
+    }
+}
+.th-format-money{
+    position: relative;
+    i{
+        position: absolute;
+        top: 39px;
+        left: 18px;
+    }
+
+    input{
+        padding-left: 2rem;
+    }
+}
+
+
+//////////////////////////////////////// alert
+//////////////////////////////////////// alert
+
+.swal2-popup {
+    font-size: 0.9rem !important;
+}

@@ -1,0 +1,43 @@
+//----------------------  Colores generales
+$primario: #2b67e8;
+$primario-hover: #2b67e8 ;
+
+//----------------------  Botones
+$color-success: #47a0f3;
+$color-success-hover: #0084ff;
+
+$color-info: #2b57e8;
+$color-info-hover: #3866da;
+
+
+//---------------------- Fuente de pagina
+$fuente-principal: "Poppins", sans-serif;
+
+//---------------------- body
+$body: #eeeeee;
+
+//---------------------- color de sidebar
+// color de las barra derecha y superior
+$color-barra : #333333;
+// fonfo de los menus de la barra
+$color-barra-menus : #eeeeee;
+
+//---------------------- cards
+// colores card-header
+$gris-card: #8b8b8b26;
+$gris-card-sub: #8b8b8b1c;
+
+// colres card-body
+$blanco-card: #fff;
+
+//---------------------- Formularios
+// colores de formularios
+$correcto: #59d63c;
+$incorrecto: #cf0808;
+
+// media querys
+$telefono-mini: 375px;
+$telefono: 530px;
+$tablet: 910px;
+$desktop: 1200px;
+$desktop-full: 1440px;
