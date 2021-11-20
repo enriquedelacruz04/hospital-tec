@@ -101,16 +101,3 @@ $nombre1 = "marcos";
         </div>
     </div>
 </div>
-
-
-<ul>
-    <?php
-
-    for ($i = 1; $i <= 100; $i++) {
-        # code...
-        echo "<li>";
-        echo $nombre1 . "-- " .  $i;
-        echo "</li>";
-    }
-    ?>
-</ul>

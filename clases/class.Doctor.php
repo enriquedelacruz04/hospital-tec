@@ -60,7 +60,8 @@ class Doctor
     //========================= Consulta todos los registros
     public function getAllDoctor()
     {
-        $query = "SELECT * FROM $this->tablaNombre";
+        $query = "SELECT * FROM doctor ";
+
         $result = $this->db->consulta($query);
         $numResult = $this->db->num_rows($result);
 

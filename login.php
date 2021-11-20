@@ -60,8 +60,9 @@ $navegador = $f->navegador();
             <div class="auth-box  border-top">
                 <div id="loginform">
                     <div class="text-center p-t-20 p-b-20">
+                        <h1 style="font-size: 2rem; margin-bottom:2rem">Sistema Hospital</h1>
                         <span class="db" style="color: #fff; font-weight: bold; font-size: 25px;">
-                            <img src="images/generales/logo_login.png" style="height: 180px;" alt="logo" />
+                            <img src="images/logo.svg" style="height: 100px;" alt="logo" />
                             <!--Sistema de Ventas-->
                         </span>
                     </div>
