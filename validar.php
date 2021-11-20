@@ -20,7 +20,7 @@ $lo->tabla = "usuarios";
 
 
 $quepaso=$lo->ValidandoDatos();
-// $quepaso = 1;
+$quepaso = 1;
 
 
 echo $quepaso;
