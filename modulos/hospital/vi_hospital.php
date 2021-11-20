@@ -29,7 +29,7 @@ $rutaGaHospital = "modulos/hospital/ga_hospital.php";
 
 <div class="card th-card-titulo">
     <div class="card-header">
-        <h5 class="card-title">HOSPITALES</h5>
+        <h5 class="card-title">LISTA DE HOSPITALES</h5>
         <div class="card-botones">
         </div>
     </div>
