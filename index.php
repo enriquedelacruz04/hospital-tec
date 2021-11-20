@@ -44,7 +44,7 @@ $tipo = $_SESSION['se_sas_Tipo'];
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="shortcut icon" type="image/png" href="images/generales/favicon.ico" />
+    <!-- <link rel="shortcut icon" type="image/png" href="images/generales/favicon.ico" /> -->
     <!-- Favicon icon -->
     <title>Sistema </title>
 
@@ -175,8 +175,7 @@ $tipo = $_SESSION['se_sas_Tipo'];
                 </div>
 
                 <div class="header__logo">
-                    <a href="https://coachdanielrios.com/">
-                        <img src="images/generales/logo_login.png" alt="">
+                    <img src="images/logo.svg" alt="">
                     </a>
                 </div>
 
@@ -237,6 +236,12 @@ $tipo = $_SESSION['se_sas_Tipo'];
 
                 <div class="row">
 
+                    <div class="" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top:5rem">
+
+
+                        <h1 style="text-align: center; font-size: 5rem; ">Sistema HOSPITAL</h1>
+                        <img src="images/logo.svg " style="width: 200px; margin-top:5rem" alt="">
+                    </div>
 
                 </div>
                 <!-- ============================================================== -->
@@ -251,7 +256,7 @@ $tipo = $_SESSION['se_sas_Tipo'];
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                TODOS LOS DERECHOS RESERVADOS &COPY; COACH DANIEL RÍOS
+                TODOS LOS DERECHOS RESERVADOS &COPY; TALLER BASE DE DATOS
                 <!--<a href="https://wrappixel.com">WrapPixel</a>.-->
             </footer>
             <!-- ============================================================== -->
