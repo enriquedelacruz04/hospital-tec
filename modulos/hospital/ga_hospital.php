@@ -1,5 +1,6 @@
 <?php 
-for
+    for ($i=0; $i <5 ; $i++) { 
+    echo "<h1> hola desde php </h1>";
+    }
 
-holaaaa
-?>
+    ?>
