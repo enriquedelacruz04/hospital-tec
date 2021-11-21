@@ -1,27 +1,47 @@
-<?php 
-    for ($i=0; $i <5 ; $i++) { 
-    echo "<h1> hola desde php </h1>";
+<?php
+require_once("../../clases/conexcion.php");
+require_once("../../clases/class.Sesion.php");
+require_once("../../clases/class.Funciones.php");
+require_once("../../clases/class.Hospital.php");
+
+//========================= Funciones
+$db = new MySQL();
+$se = new Sesion();
+$fun = new Funciones();
+$hospital = new Hospital();
+$hospital->db = $db;
+
+//========================= Sesion 
+if (!isset($_SESSION['se_SAS'])) {
+    header("Location: ../login.php");
+    exit;
+}
+
+//========================= Editando o creando
+$id = $_POST['viId'];
+$editar = ($id != 0) ? true : false;
+
+try {
+    $db->begin();
+
+    //========================= Valores que vienen de formulario con ajax
+    $hospital->numero = $_POST['viNumero'];
+    $hospital->nombre = $_POST['viNombre'];
+    $hospital->direccion = $_POST['viDireccion'];
+    $hospital->telefono = $_POST['viTelefono'];
+    $hospital->correo = $_POST['viCorreo'];
+
+
+    if ($editar == true) {
+        //========================= Modificar en la base de datos
+        $hospital->modificarHospital();
+    } else {
+        //========================= Guardar nuevo en la base de datos
+        $hospital->guardarHospital();
     }
 
-<<<<<<< HEAD
-    //---------------------- Verficar si todo esta OK
-    if ($respuesta["db"] && $respuesta["img"]) {
-        $db->commit();
-        echo 1;
-    } else {
-        if ($respuesta["img"] != 1) {
-            echo  $respuesta["img"] . " ";
-        }
-    }
+    $db->commit();
+    echo 1;
 } catch (Exception $e) {
     $db->rollback();
-    $v = explode('|', $e);
-    // echo $v[1];
-    $n = explode("'", $v[1]);
-    $n[0];
-    echo $db->m_error($n[0]);
-    echo "ERROR EN LA BASE DE DATOS";
 }
-=======
-    ?>
->>>>>>> 455b9f21be1c4aba2a2eaf9ec4682f43caabca61

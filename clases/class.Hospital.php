@@ -38,21 +38,22 @@ class Hospital
 			 '$this->correo'
 			 )";
 
-        $result = $this->db->consulta($query);
-        $this->ultimoId = $this->db->id_ultimo();
-        return $result;
+        $this->db->consulta($query);
     }
 
     //========================= Modificar registro 
     public function modificarHospital()
     {
         $query = "UPDATE $this->tablaNombre SET 
-		idSucursales = '$this->idSucursal'
+		numero = '$this->numero',
+		nombre = '$this->nombre',
+		direccion = '$this->direccion',
+		telefono = '$this->telefono',
+		correo = '$this->correo'
 
-		WHERE $this->tablaId = '$this->id'";
+		WHERE $this->tablaId = '$this->numero'";
 
-        $result = $this->db->consulta($query);
-        return $result;
+        $this->db->consulta($query);
     }
 
     //========================= Consulta todos los registros

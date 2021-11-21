@@ -1,99 +1,96 @@
 <?php
-// require_once("../../../../clases/conexcion.php");
-// require_once("../../../../clases/class.Sesion.php");
-// require_once("../../../../clases/class.Funciones.php");
-// require_once("../../../../clases/class.Servicios.php");
+require_once("../../clases/conexcion.php");
+require_once("../../clases/class.Sesion.php");
+require_once("../../clases/class.Funciones.php");
+require_once("../../clases/class.Hospital.php");
 
-// //---------------------- Funciones
-// $db = new MySQL();
-// $se = new Sesion();
-// $fun = new Funciones();
+//========================= Funciones
+$db = new MySQL();
+$se = new Sesion();
+$fun = new Funciones();
+$hospital = new Hospital();
+$hospital->db = $db;
 
-// $servicios = new Servicios();
-// $servicios->db = $db;
+//========================= Sesion 
+if (!isset($_SESSION['se_SAS'])) {
+    header("Location: ../login.php");
+    exit;
+}
 
-// //---------------------- Sesion 
-// if (!isset($_SESSION['se_SAS'])) {
-//     header("Location: ../login.php");
-//     exit;
-// }
+//========================= Rutas
+$rutaViHospital = "modulos/hospital/vi_hospital.php";
+$rutaFaHospital = "modulos/hospital/fa_hospital.php";
+$rutaGaHospital = "modulos/hospital/ga_hospital.php";
 
-// //---------------------- Rutas 
-// $rutaServicios = "modulos/coach/catalogos/servicios/";
+//========================= Editando o creando
+$numero = $_GET['numero'];
 
-// //---------------------- Editando o creando
-// $id = $_GET['id'];
-// $editar = ($id != 0) ? true : false;
+$editar = ($numero != 0) ? true : false;
 
-// if ($editar) {
-//     $rowServicios = $servicios->getOneServicios($id);
-// }
+if ($editar) {
+    $rowHospital = $hospital->getOneHospital($numero);
+}
 
-// //---------------------- Datos a rellenar del formulario si esta en editar o valor predeterminado si esta en crear
-// $titulo = ($editar) ?  $fun->imprimir_cadena_utf8($rowServicios['titulo']) : '';
-// $descripcion = ($editar) ?  $fun->imprimir_cadena_utf8($rowServicios['descripcion']) : '';
-// $estatus = ($editar) ?  $fun->imprimir_cadena_utf8($rowServicios['estatus']) : '1';
-
-// //---------------------- Directorio de Imagenes
-// $directorioImagenes = "modulos/coach/catalogos/servicios/imagenes/";
-// $archivoImagenExiste = ($rowServicios['archivo_imagen'] !== null) ? true : false;
-
-// $archivoImagen = ($editar) ?  $directorioImagenes . $fun->imprimir_cadena_utf8($rowServicios['archivo_imagen']) : '';
+//========================= Datos a rellenar del formulario si esta en editar o valor predeterminado si esta en crear
+$numero = ($editar) ?  $rowHospital['numero'] : '';
+$nombre = ($editar) ?  $rowHospital['nombre'] : '';
+$direccion = ($editar) ?  $rowHospital['direccion'] : '';
+$telefono = ($editar) ?  $rowHospital['telefono'] : '';
+$correo = ($editar) ?  $rowHospital['correo'] : '';
 ?>
 
-<!-- //////////////////////////////////////// Vista de formulario -->
-<!-- //////////////////////////////////////// Vista de formulario -->
+<!-- //=========================================================== -->
+<!-- // Vista de formulario  -->
+<!-- //===========================================================  -->
+
 
 <div class="card th-card-titulo">
     <div class="card-header th-card-header">
-        <h5 class="card-title "><?= ($editar) ? "MODIFICAR SERVICIO" : "AÑADIR HOSPITAL" ?></h5>
-        <div class="card-botones">
-            <button onClick="aparecermodulos('<?= $rutaServicios ?>vi_servicios.php','main');" type="button" class="btn btn-info">VER SERVICIOS</button>
-        </div>
+        <h5 class="card-title "><?= ($editar) ? "MODIFICAR HOSPITAL" : "AÑADIR HOSPITAL" ?></h5>
     </div>
 </div>
 
 <div class="card th-card-table">
     <div class="card-body p-4">
-        <h5 class="card-title">DATOS DEL HOPSITAL</h5>
-        <form id="form-add-servicios" class="mt-4">
+        <form id="form-add-hospital" class="mt-4">
             <div class="form-row">
 
                 <div class="form-group col-md-6">
+                    <label>Numero:</label>
+                    <input type="text" class="form-control" id="viNumero" name="viNumero" value="<?= $numero ?>">
+                </div>
+
+                <div class="form-group col-md-6">
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
+                    <input type="text" class="form-control" id="viNombre" name="viNombre" value="<?= $nombre ?>">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label>Direccion:</label>
-                    <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
+                    <input type="text" class="form-control" id="viDireccion" name="viDireccion" value="<?= $direccion ?>">
                 </div>
-
-
-            </div>
-
-            <div class="form-row">
 
                 <div class="form-group col-md-6">
                     <label>Telefono:</label>
-                    <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
+                    <input type="text" class="form-control" id="viTelefono" name="viTelefono" value="<?= $telefono ?>">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label>Correo:</label>
-                    <input type="text" class="form-control" id="viTitulo" name="viTitulo" value="<?= $titulo ?>">
+                    <input type="text" class="form-control" id="viCorreo" name="viCorreo" value="<?= $correo ?>">
                 </div>
 
             </div>
 
+
             <div class="form-row">
                 <div class="col-md-12 d-flex justify-content-end">
 
-                    <input type="hidden" id="viId" name="viId" value="<?php echo $id ?>" />
+                    <input type="hidden" id="viId" name="viId" value="<?php echo ($editar) ? "1" : "0" ?>" />
 
-                    <button onClick="guardarServiciosCoach('form-add-servicios',
-                    '<?= $rutaServicios ?>c_addServicios.php',
-                    '<?= $rutaServicios ?>vi_servicios.php',
+                    <button onClick="GuardarEspecial('form-add-hospital',
+                    '<?= $rutaGaHospital ?>',
+                    '<?= $rutaViHospital ?>',
                     'main')" type="button" class="btn btn-success mt-3"><?= ($editar) ? "ACTUALIZAR" : "GUARDAR" ?></button>
 
                 </div>

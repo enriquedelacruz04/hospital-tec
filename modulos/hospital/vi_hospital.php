@@ -21,10 +21,6 @@ if (!isset($_SESSION['se_SAS'])) {
 $rutaViHospital = "modulos/hospital/vi_hospital.php";
 $rutaFaHospital = "modulos/hospital/fa_hospital.php";
 $rutaGaHospital = "modulos/hospital/ga_hospital.php";
-
-
-$nombre1 = "marcos";
-
 ?>
 
 <!-- //=========================================================== -->
@@ -33,20 +29,15 @@ $nombre1 = "marcos";
 
 <div class="card th-card-titulo">
     <div class="card-header">
-        <h5 class="card-title">LISTA DE HOSPITALES ingresados</h5>
+        <h5 class="card-title">LISTA DE HOSPITALES </h5>
         <div class="card-botones">
+            <button onClick="aparecermodulos('<?= $rutaFaHospital . "?numero=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO HOSPITAL</button>
         </div>
     </div>
 </div>
 
 
-<div class="card th-card-titulo">
-    <div class="card-header">
 
-
-    </div>
-</div>
-</div>
 
 <div class="card th-card-table">
     <div class="card-body">
