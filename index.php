@@ -383,17 +383,6 @@ $tipo = $_SESSION['se_sas_Tipo'];
         <script src="js/fn_Administrador.js" type="text/javascript"></script>
 
         <script src="js/fn_generales.js" type="text/javascript"></script>
-        <script src="js/fn_serviciosCoach.js" type="text/javascript"></script>
-        <script src="js/fn_imagenes.js" type="text/javascript"></script>
-        <script src="js/fn_videos.js" type="text/javascript"></script>
-        <script src="js/fn_documentos.js" type="text/javascript"></script>
-        <script src="js/fn_cursos.js" type="text/javascript"></script>
-        <script src="js/fn_secciones.js" type="text/javascript"></script>
-        <script src="js/fn_seccionesArchivos.js" type="text/javascript"></script>
-        <script src="js/fn_cursosCaracteristicas.js" type="text/javascript"></script>
-        <script src="js/fn_archivos.js" type="text/javascript"></script>
-        <script src="js/fn_noticias.js" type="text/javascript"></script>
-        <script src="js/fn_configuracionPagina.js" type="text/javascript"></script>
 
 
     </div>

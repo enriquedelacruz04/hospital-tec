@@ -4,10 +4,6 @@ class Paciente
     //=========================  Objeto de conexion con la base de datos
     public $db;
 
-    //========================= ID's
-    // public $ultimoId;
-    // public $id;
-
     //========================= Variables de la DB 
     public $rfc;
     public $nombre;
@@ -28,7 +24,7 @@ class Paciente
     public function guardarPaciente()
     {
         $query = "INSERT INTO $this->tablaNombre
-			(cedula, nombre, edad, sexo, telefono, especialidad)
+			(rfc, nombre, edad, sexo, telefono, tipo_derecho_habiente)
 
 			 VALUES 
 			 (
@@ -36,25 +32,27 @@ class Paciente
 			 '$this->nombre',
 			 '$this->edad',
 			 '$this->sexo',
-			 '$this->telefono'
+			 '$this->telefono',
 			 '$this->tipo'
 			 )";
 
-        $result = $this->db->consulta($query);
-        $this->ultimoId = $this->db->id_ultimo();
-        return $result;
+        $this->db->consulta($query);
     }
 
     //========================= Modificar registro 
     public function modificarPaciente()
     {
         $query = "UPDATE $this->tablaNombre SET 
-		idSucursales = '$this->idSucursal'
+		rfc = '$this->rfc',
+		nombre = '$this->nombre',
+		edad = '$this->edad',
+		sexo = '$this->sexo',
+		telefono = '$this->telefono',
+		tipo_derecho_habiente = '$this->tipo'
 
-		WHERE $this->tablaId = '$this->id'";
+		WHERE $this->tablaId = '$this->rfc'";
 
-        $result = $this->db->consulta($query);
-        return $result;
+        $this->db->consulta($query);
     }
 
     //========================= Consulta todos los registros

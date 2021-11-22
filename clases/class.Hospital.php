@@ -4,10 +4,6 @@ class Hospital
     //=========================  Objeto de conexion con la base de datos
     public $db;
 
-    //========================= ID's
-    // public $ultimoId;
-    // public $id;
-
     //========================= Variables de la DB 
     public $numero;
     public $nombre;

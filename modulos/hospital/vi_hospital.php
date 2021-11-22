@@ -36,9 +36,6 @@ $rutaGaHospital = "modulos/hospital/ga_hospital.php";
     </div>
 </div>
 
-
-
-
 <div class="card th-card-table">
     <div class="card-body">
         <div class="table-responsive">
@@ -56,7 +53,6 @@ $rutaGaHospital = "modulos/hospital/ga_hospital.php";
                 <tbody>
 
                     <?php
-
                     //========================= Consulta
                     $consultaHospital = $hospital->getAllHospital();
                     while ($rowHospital = $db->fetch_assoc($consultaHospital)) {

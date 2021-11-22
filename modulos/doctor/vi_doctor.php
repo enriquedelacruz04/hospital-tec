@@ -31,6 +31,7 @@ $rutaGaDoctor = "modulos/doctor/ga_doctor.php";
     <div class="card-header">
         <h5 class="card-title">DOCTORES</h5>
         <div class="card-botones">
+            <button onClick="aparecermodulos('<?= $rutaFaDoctor . "?cedula=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO DOCTOR</button>
         </div>
     </div>
 </div>
@@ -47,13 +48,13 @@ $rutaGaDoctor = "modulos/doctor/ga_doctor.php";
                         <th class="text-center">SEXO</th>
                         <th class="text-center">TELEFONO</th>
                         <th class="text-center">ESPECIALIDAD</th>
+                        <th class="text-center">NUMERO HOSPITAL</th>
                         <th class="text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php
-
                     //========================= Consulta
                     $consultaDoctor = $doctor->getAllDoctor();
                     while ($rowDoctor = $db->fetch_assoc($consultaDoctor)) {
@@ -65,6 +66,7 @@ $rutaGaDoctor = "modulos/doctor/ga_doctor.php";
                         $sexo = $rowDoctor['sexo'];
                         $telefono = $rowDoctor['telefono'];
                         $especialidad = $rowDoctor['especialidad'];
+                        $hospital = $rowDoctor['hospital_numero'];
                     ?>
                         <tr>
                             <td align="center"><?= $cedula ?></td>
@@ -73,13 +75,14 @@ $rutaGaDoctor = "modulos/doctor/ga_doctor.php";
                             <td align="center"><?= $sexo ?></td>
                             <td align="center"><?= $telefono ?></td>
                             <td align="center"><?= $especialidad ?></td>
+                            <td align="center"><?= $hospital ?></td>
                             <td align="center">
 
-                            <!-- Editar -->
-                            <button onClick="aparecermodulos('<?= $rutaFaDoctor . "?numero=$numero" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
+                                <!-- Editar -->
+                                <button onClick="aparecermodulos('<?= $rutaFaDoctor . "?cedula=$cedula" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
 
-                            <!-- Eliminar -->
-                            <button onClick="BorrarDatos('<?= $numero; ?>','numero','doctor','n','<?= $rutaViDoctor ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
+                                <!-- Eliminar -->
+                                <button onClick="BorrarDatos('<?= $cedula; ?>','cedula','doctor','n','<?= $rutaViDoctor ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
 
                             </td>
                         </tr>

@@ -31,6 +31,7 @@ $rutaGaPaciente = "modulos/paciente/ga_paciente.php";
     <div class="card-header">
         <h5 class="card-title">PACIENTES</h5>
         <div class="card-botones">
+            <button onClick="aparecermodulos('<?= $rutaFaPaciente . "?rfc=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO PACIENTE</button>
         </div>
     </div>
 </div>
@@ -76,10 +77,10 @@ $rutaGaPaciente = "modulos/paciente/ga_paciente.php";
                             <td align="center">
 
                                 <!-- Editar -->
-                                <button onClick="aparecermodulos('<?= $rutaFaPaciente . "?numero=$numero" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
+                                <button onClick="aparecermodulos('<?= $rutaFaPaciente . "?rfc=$rfc" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
 
                                 <!-- Eliminar -->
-                                <button onClick="BorrarDatos('<?= $numero; ?>','numero','paciente','n','<?= $rutaViPaciente ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
+                                <button onClick="BorrarDatos('<?= $rfc; ?>','rfc','paciente','n','<?= $rutaViPaciente ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
 
                             </td>
                         </tr>

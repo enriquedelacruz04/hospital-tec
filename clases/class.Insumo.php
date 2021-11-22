@@ -1,66 +1,56 @@
 <?php
-class Doctor
+class Insumo
 {
     //=========================  Objeto de conexion con la base de datos
     public $db;
 
     //========================= Variables de la DB 
-    public $cedula;
+    public $id;
     public $nombre;
-    public $edad;
-    public $sexo;
-    public $telefono;
-    public $especialidad;
-    public $hospitalNumero;
+    public $cantidad;
+    public $marca;
 
     //=========================  Datos de la tabla de la DB
-    private $tablaNombre = "doctor";
-    private $tablaId = "cedula";
+    private $tablaNombre = "insumo";
+    private $tablaId = "idinsumo";
 
     //===========================================================
     // Funciones 
     //=========================================================== 
 
     //========================= Guardar nuevo registro 
-    public function guardarDoctor()
+    public function guardarInsumo()
     {
         $query = "INSERT INTO $this->tablaNombre
-        	(cedula, nombre, edad, sexo, telefono, especialidad, hospital_numero)
+			(nombre, cantidad, marca)
 
-        	 VALUES 
-        	 (
-        	 '$this->cedula',
-        	 '$this->nombre',
-        	 '$this->edad',
-        	 '$this->sexo',
-        	 '$this->telefono',
-        	 '$this->especialidad',
-        	 '$this->hospitalNumero'
-        	 )";
+			 VALUES 
+			 (
+			 '$this->nombre',
+			 '$this->cantidad',
+			 '$this->marca'
+			 )";
 
         $this->db->consulta($query);
     }
 
     //========================= Modificar registro 
-    public function modificarDoctor()
+    public function modificarInsumo()
     {
         $query = "UPDATE $this->tablaNombre SET 
 		nombre = '$this->nombre',
-		edad = '$this->edad',
-		sexo = '$this->sexo',
-		telefono = '$this->telefono',
-		especialidad = '$this->especialidad',
-		hospital_numero = '$this->hospitalNumero'
+		cantidad = '$this->cantidad',
+		marca = '$this->marca'
 
-		WHERE $this->tablaId = '$this->cedula'";
+		WHERE $this->tablaId = '$this->id'";
 
         $this->db->consulta($query);
     }
 
     //========================= Consulta todos los registros
-    public function getAllDoctor()
+    public function getAllInsumo()
     {
-        $query = "SELECT * FROM doctor ";
+        $query = "SELECT * FROM $this->tablaNombre";
         $result = $this->db->consulta($query);
         $numResult = $this->db->num_rows($result);
 
@@ -72,7 +62,7 @@ class Doctor
     }
 
     //========================= Consulta 1 registro 
-    public function getOneDoctor($id)
+    public function getOneInsumo($id)
     {
         $query = "SELECT * FROM $this->tablaNombre WHERE $this->tablaId = $id";
         $result = $this->db->consulta($query);
