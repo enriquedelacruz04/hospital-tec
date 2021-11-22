@@ -2,14 +2,14 @@
 require_once("../../clases/conexcion.php");
 require_once("../../clases/class.Sesion.php");
 require_once("../../clases/class.Funciones.php");
-require_once("../../clases/class.Insumo.php");
+require_once("../../clases/class.TipoProcedimiento.php");
 
 //========================= Funciones
 $db = new MySQL();
 $se = new Sesion();
 $fun = new Funciones();
-$insumo = new Insumo();
-$insumo->db = $db;
+$tipoProcedimiento = new TipoProcedimiento();
+$tipoProcedimiento->db = $db;
 
 //========================= Sesion 
 if (!isset($_SESSION['se_SAS'])) {
@@ -18,9 +18,9 @@ if (!isset($_SESSION['se_SAS'])) {
 }
 
 //========================= Rutas
-$rutaViInsumo = "modulos/insumo/vi_insumo.php";
-$rutaFaInsumo = "modulos/insumo/fa_insumo.php";
-$rutaGaInsumo = "modulos/insumo/ga_insumo.php";
+$rutaViTipoProcedimiento = "modulos/tipoProcedimiento/vi_tipoProcedimiento.php";
+$rutaFaTipoProcedimiento = "modulos/tipoProcedimiento/fa_tipoProcedimiento.php";
+$rutaGaTipoProcedimiento = "modulos/tipoProcedimiento/ga_tipoProcedimiento.php";
 
 //========================= Editando o creando
 $id = $_GET['id'];
@@ -28,13 +28,13 @@ $id = $_GET['id'];
 $editar = ($id != 0) ? true : false;
 
 if ($editar) {
-    $rowInsumo = $insumo->getOneInsumo($id);
+    $rowTipoProcedimiento = $tipoProcedimiento->getOneTipoProcedimiento($id);
 }
 
 //========================= Datos a rellenar del formulario si esta en editar o valor predeterminado si esta en crear
-$nombre = ($editar) ?  $rowInsumo['nombre'] : '';
-$cantidad = ($editar) ?  $rowInsumo['cantidad'] : '';
-$marca = ($editar) ?  $rowInsumo['marca'] : '';
+$nombre = ($editar) ?  $rowTipoProcedimiento['nombre'] : '';
+$costo = ($editar) ?  $rowTipoProcedimiento['costo'] : '';
+$iva = ($editar) ?  $rowTipoProcedimiento['iva'] : '';
 ?>
 
 <!-- //=========================================================== -->
@@ -44,13 +44,13 @@ $marca = ($editar) ?  $rowInsumo['marca'] : '';
 
 <div class="card th-card-titulo">
     <div class="card-header th-card-header">
-        <h5 class="card-title "><?= ($editar) ? "MODIFICAR INSUMO" : "AÑADIR INSUMO" ?></h5>
+        <h5 class="card-title "><?= ($editar) ? "MODIFICAR PRCEDIMIENTO" : "AÑADIR PRCEDIMIENTO" ?></h5>
     </div>
 </div>
 
 <div class="card th-card-table">
     <div class="card-body p-4">
-        <form id="form-add-insumo" class="mt-4">
+        <form id="form-add-tipoProcedimiento" class="mt-4">
             <div class="form-row">
 
 
@@ -60,13 +60,13 @@ $marca = ($editar) ?  $rowInsumo['marca'] : '';
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label>CANTIDAD:</label>
-                    <input type="text" class="form-control" id="viCantidad" name="viCantidad" value="<?= $cantidad ?>">
+                    <label>COSTO:</label>
+                    <input type="text" class="form-control" id="viCosto" name="viCosto" value="<?= $costo ?>">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label>MARCA:</label>
-                    <input type="text" class="form-control" id="viMarca" name="viMarca" value="<?= $marca ?>">
+                    <label>IVA:</label>
+                    <input type="text" class="form-control" id="viIva" name="viIva" value="<?= $iva ?>">
                 </div>
 
 
@@ -78,7 +78,7 @@ $marca = ($editar) ?  $rowInsumo['marca'] : '';
 
                     <input type="hidden" id="viId" name="viId" value="<?php echo $id ?>" />
 
-                    <button onClick=" GuardarEspecial('form-add-insumo', '<?= $rutaGaInsumo ?>' , '<?= $rutaViInsumo ?>' , 'main' )" type="button" class="btn btn-success mt-3"><?= ($editar) ? "ACTUALIZAR" : "GUARDAR" ?></button>
+                    <button onClick=" GuardarEspecial('form-add-tipoProcedimiento', '<?= $rutaGaTipoProcedimiento ?>' , '<?= $rutaViTipoProcedimiento ?>' , 'main' )" type="button" class="btn btn-success mt-3"><?= ($editar) ? "ACTUALIZAR" : "GUARDAR" ?></button>
 
                 </div>
             </div>

@@ -352,7 +352,7 @@ function ObtenerDatosFormulario(id)
 		}
         else if( element.tagName.toLowerCase() == 'input' )
         {
-                if( element.type == 'text' || element.type == 'hidden' || element.type == 'password')
+                if( element.type == 'text' || element.type == 'hidden' || element.type == 'password' ||  element.type == 'date' || element.type == 'time')
                 {
 					cadena +=element.name+"="+element.value+"&";
                 }

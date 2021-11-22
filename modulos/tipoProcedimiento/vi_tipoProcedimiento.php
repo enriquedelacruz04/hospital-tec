@@ -2,14 +2,14 @@
 require_once("../../clases/conexcion.php");
 require_once("../../clases/class.Sesion.php");
 require_once("../../clases/class.Funciones.php");
-require_once("../../clases/class.Insumo.php");
+require_once("../../clases/class.TipoProcedimiento.php");
 
 //========================= Funciones
 $db = new MySQL();
 $se = new Sesion();
 $fun = new Funciones();
-$insumo = new Insumo();
-$insumo->db = $db;
+$tipoProcedimiento = new TipoProcedimiento();
+$tipoProcedimiento->db = $db;
 
 //========================= Sesion 
 if (!isset($_SESSION['se_SAS'])) {
@@ -18,9 +18,9 @@ if (!isset($_SESSION['se_SAS'])) {
 }
 
 //========================= Rutas
-$rutaViInsumo = "modulos/insumo/vi_insumo.php";
-$rutaFaInsumo = "modulos/insumo/fa_insumo.php";
-$rutaGaInsumo = "modulos/insumo/ga_insumo.php";
+$rutaViTipoProcedimiento = "modulos/tipoProcedimiento/vi_tipoProcedimiento.php";
+$rutaFaTipoProcedimiento = "modulos/tipoProcedimiento/fa_tipoProcedimiento.php";
+$rutaGaTipoProcedimiento = "modulos/tipoProcedimiento/ga_tipoProcedimiento.php";
 ?>
 
 <!-- //=========================================================== -->
@@ -29,9 +29,9 @@ $rutaGaInsumo = "modulos/insumo/ga_insumo.php";
 
 <div class="card th-card-titulo">
     <div class="card-header">
-        <h5 class="card-title">LISTA DE INSUMOS </h5>
+        <h5 class="card-title">LISTA DE PROCEDIMIENTOS </h5>
         <div class="card-botones">
-            <button onClick="aparecermodulos('<?= $rutaFaInsumo . "?id=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO INSUMO</button>
+            <button onClick="aparecermodulos('<?= $rutaFaTipoProcedimiento . "?id=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO PROCEDIMIENTO</button>
         </div>
     </div>
 </div>
@@ -44,8 +44,8 @@ $rutaGaInsumo = "modulos/insumo/ga_insumo.php";
                     <tr>
                         <th class="text-center">ID</th>
                         <th class="text-center">NOMBRE</th>
-                        <th class="text-center">CANTIDAD</th>
-                        <th class="text-center">MARCA</th>
+                        <th class="text-center">COSTO</th>
+                        <th class="text-center">IVA</th>
                         <th class="text-center">ACCIONES</th>
                     </tr>
                 </thead>
@@ -53,27 +53,27 @@ $rutaGaInsumo = "modulos/insumo/ga_insumo.php";
 
                     <?php
                     //========================= Consulta
-                    $consultaInsumo = $insumo->getAllInsumo();
-                    while ($rowInsumo = $db->fetch_assoc($consultaInsumo)) {
+                    $consultaTipoProcedimiento = $tipoProcedimiento->getAllTipoProcedimiento();
+                    while ($rowTipoProcedimiento = $db->fetch_assoc($consultaTipoProcedimiento)) {
 
                         //========================= Variables de la vista
-                        $id = $rowInsumo['idinsumo'];
-                        $nombre = $rowInsumo['nombre'];
-                        $cantidad = $rowInsumo['cantidad'];
-                        $marca = $rowInsumo['marca'];
+                        $id = $rowTipoProcedimiento['idtipo_procedimiento'];
+                        $nombre = $rowTipoProcedimiento['nombre'];
+                        $costo = $rowTipoProcedimiento['costo'];
+                        $iva = $rowTipoProcedimiento['iva'];
                     ?>
                         <tr>
                             <td align="center"><?= $id ?></td>
                             <td align="center"><?= $nombre ?></td>
-                            <td align="center"><?= $cantidad ?></td>
-                            <td align="center"><?= $marca ?></td>
+                            <td align="center"><?= $costo ?></td>
+                            <td align="center"><?= $iva ?></td>
                             <td align="center">
 
                                 <!-- Editar -->
-                                <button onClick="aparecermodulos('<?= $rutaFaInsumo . "?id=$id" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
+                                <button onClick="aparecermodulos('<?= $rutaFaTipoProcedimiento . "?id=$id" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
 
                                 <!-- Eliminar -->
-                                <button onClick="BorrarDatos('<?= $id; ?>','idinsumo','insumo','n','<?= $rutaViInsumo ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
+                                <button onClick="BorrarDatos('<?= $id; ?>','idtipo_procedimiento','tipo_procedimiento','n','<?= $rutaViTipoProcedimiento ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
 
                             </td>
                         </tr>

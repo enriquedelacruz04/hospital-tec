@@ -1,5 +1,5 @@
 <?php
-class Doctor
+class Procedimiento
 {
     //=========================  Objeto de conexion con la base de datos
     public $db;
@@ -14,15 +14,15 @@ class Doctor
     public $hospitalNumero;
 
     //=========================  Datos de la tabla de la DB
-    private $tablaNombre = "doctor";
-    private $tablaId = "cedula";
+    private $tablaNombre = "procedimiento";
+    private $tablaId = "idprocedimiento";
 
     //===========================================================
     // Funciones 
     //=========================================================== 
 
     //========================= Guardar nuevo registro 
-    public function guardarDoctor()
+    public function guardarProcedimiento()
     {
         $query = "INSERT INTO $this->tablaNombre
         	(cedula, nombre, edad, sexo, telefono, especialidad, hospital_numero)
@@ -42,7 +42,7 @@ class Doctor
     }
 
     //========================= Modificar registro 
-    public function modificarDoctor()
+    public function modificarProcedimiento()
     {
         $query = "UPDATE $this->tablaNombre SET 
 		nombre = '$this->nombre',
@@ -58,7 +58,7 @@ class Doctor
     }
 
     //========================= Consulta todos los registros
-    public function getAllDoctor()
+    public function getAllProcedimiento()
     {
         $query = "SELECT * FROM $this->tablaNombre ";
         $result = $this->db->consulta($query);
@@ -72,7 +72,7 @@ class Doctor
     }
 
     //========================= Consulta 1 registro 
-    public function getOneDoctor($id)
+    public function getOneProcedimiento($id)
     {
         $query = "SELECT * FROM $this->tablaNombre WHERE $this->tablaId = $id";
         $result = $this->db->consulta($query);

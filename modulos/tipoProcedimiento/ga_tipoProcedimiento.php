@@ -2,14 +2,14 @@
 require_once("../../clases/conexcion.php");
 require_once("../../clases/class.Sesion.php");
 require_once("../../clases/class.Funciones.php");
-require_once("../../clases/class.Insumo.php");
+require_once("../../clases/class.TipoProcedimiento.php");
 
 //========================= Funciones
 $db = new MySQL();
 $se = new Sesion();
 $fun = new Funciones();
-$insumo = new Insumo();
-$insumo->db = $db;
+$tipoProcedimiento = new TipoProcedimiento();
+$tipoProcedimiento->db = $db;
 
 //========================= Sesion 
 if (!isset($_SESSION['se_SAS'])) {
@@ -25,18 +25,18 @@ try {
     $db->begin();
 
     //========================= Valores que vienen de formulario con ajax
-    $insumo->id = $_POST['viId'];
-    $insumo->nombre = $_POST['viNombre'];
-    $insumo->cantidad = $_POST['viCantidad'];
-    $insumo->marca = $_POST['viMarca'];
+    $tipoProcedimiento->id = $_POST['viId'];
+    $tipoProcedimiento->nombre = $_POST['viNombre'];
+    $tipoProcedimiento->costo = $_POST['viCosto'];
+    $tipoProcedimiento->iva = $_POST['viIva'];
 
 
     if ($editar == true) {
         //========================= Modificar en la base de datos
-        $insumo->modificarInsumo();
+        $tipoProcedimiento->modificarTipoProcedimiento();
     } else {
         //========================= Guardar nuevo en la base de datos
-        $insumo->guardarInsumo();
+        $tipoProcedimiento->guardarTipoProcedimiento();
     }
 
     $db->commit();
