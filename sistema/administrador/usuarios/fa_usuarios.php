@@ -40,13 +40,12 @@ $total = $db->num_rows($resp);
 		</div>
 
 		<div class="card-body">
-			<div class="form-group">
-				<label>PERFIL:</label>
-				<select id="idperfiles" name="idperfiles" class="form-control">
-					<?php do { ?>
-						<option value="<?php echo $rows['idperfiles']; ?>"><?php echo $fu->imprimir_cadena_utf8(strtoupper($rows['perfil'])); ?></option>
-					<?php } while ($rows = $db->fetch_assoc($resp)); ?>
-				</select>
+		
+
+
+
+			<div class="form-group m-t-20">
+				<input type="hidden" name="idperfiles" id="idperfiles" value="1" />
 			</div>
 
 			<div class="form-group m-t-20">

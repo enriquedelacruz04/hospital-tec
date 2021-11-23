@@ -27,6 +27,12 @@ class MySQL
 		$this->db = "dbhospital";
 
 
+		// $this->servidor = "localhost";
+		// $this->usuario = "id17991708_root";
+		// $this->contrase = ")G)0p6VK-nQGY?Qr";
+		// $this->db = "id17991708_dbhospital";
+
+
 
 
 

@@ -44,50 +44,11 @@ $resp = $db->consulta($query);
 $rows = $db->fetch_assoc($resp);
 $total = $db->num_rows($resp);
 
-if (isset($_GET['ac'])) {
-	if ($_GET['ac'] == 1) {
-		$msj = '<div id="mens" class="alert alert-success" role="alert">' . $_GET['msj'] . '</div>';
-	} else {
-		$msj = '<div id="mens" class="alert alert-danger" role="alert">Error. Intentar mas Tarde ' . $_GET['msj'] . '</div>';
-	}
-
-	echo '<script type="text/javascript">OcultarDiv(\'mens\')</script>';
-
-	echo $msj;
-}
 
 
 ?>
 
-<script type="text/javascript" charset="utf-8">
-	//$(document).ready(function() {
 
-	var oTable = $('#zero_config').dataTable({
-
-		"oLanguage": {
-			"sLengthMenu": "Mostrar _MENU_ REGISTROS POR PÁGINA",
-			"sZeroRecords": "No Existen Usuarios en la base de datos",
-			"sInfo": "",
-			"sInfoEmpty": "desde 0 a 0 de 0 records",
-			"sInfoFiltered": "(filtered desde _MAX_ total Registros)",
-			"sSearch": "",
-			"oPaginate": {
-				"sFirst": "Inicio",
-				"sPrevious": "Anterior",
-				"sNext": "Siguiente",
-				"sLast": "ÚLTIMO"
-			}
-		},
-		"sPaginationType": "full_numbers",
-		"sScrollX": "100%",
-		"sScrollXInner": "100%",
-		"bScrollCollapse": true
-
-
-
-	});
-	//} );
-</script>
 
 <div class="card mb-3">
 	<div class="card-header ">
@@ -102,7 +63,6 @@ if (isset($_GET['ac'])) {
 			<table id="zero_config" class="table table-bordered table-hover" cellpadding="0" cellspacing="0">
 				<thead>
 					<tr style="background: #eaeaea;">
-						<th>PERFIL</th>
 						<th>USUARIO</th>
 						<th>NOMBRE</th>
 						<th>CELULAR</th>
@@ -120,7 +80,6 @@ if (isset($_GET['ac'])) {
 						do {
 					?>
 							<tr>
-								<td align="center"><?php echo $fu->imprimir_cadena_utf8(strtoupper($rows['perfil'])); ?></td>
 								<td align="center"><?php echo $rows['usuario']; ?></td>
 								<td align="center"><?php echo $fu->imprimir_cadena_utf8($rows['nombre'] . " " . $rows['paterno'] . " " . $rows['materno']); ?></td>
 								<td align="center"><?php echo strtoupper($rows['celular']); ?></td>

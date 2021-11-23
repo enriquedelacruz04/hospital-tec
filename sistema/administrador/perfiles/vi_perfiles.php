@@ -40,32 +40,6 @@ if (isset($_GET['ac'])) {
 
 ?>
 
-<script type="text/javascript" charset="utf-8">
-	var oTable = $('#zero_config').dataTable({
-
-		"oLanguage": {
-			"sLengthMenu": "Mostrar _MENU_ Registros por página",
-			"sZeroRecords": "No Existen Perfiles en la base de datos",
-			"sInfo": "",
-			"sInfoEmpty": "desde 0 a 0 de 0 records",
-			"sInfoFiltered": "(filtered desde _MAX_ total Registros)",
-			"sSearch": "",
-			"oPaginate": {
-				"sFirst": "Inicio",
-				"sPrevious": "Anterior",
-				"sNext": "Siguiente",
-				"sLast": "ÚLTIMO"
-			}
-		},
-		"sPaginationType": "full_numbers",
-		"sScrollX": "100%",
-		"sScrollXInner": "100%",
-		"bScrollCollapse": true
-
-
-
-	});
-</script>
 
 <div class="card mb-3">
 	<div class="card-header">

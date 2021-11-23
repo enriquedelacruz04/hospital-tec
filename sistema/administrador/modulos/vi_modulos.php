@@ -47,69 +47,6 @@ if (isset($_GET['ac'])) {
 
 
 
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-
-		var oTable = $('#zero_config').dataTable({
-
-			"oLanguage": {
-				"sLengthMenu": "Mostrar _MENU_ REGISTROS POR PÁGINA",
-				"sZeroRecords": "NO EXISTEN MODULOS EN LA BASE DE DATOS",
-				"sInfo": "",
-				"sInfoEmpty": "desde 0 a 0 de 0 records",
-				"sInfoFiltered": "(filtered desde _MAX_ total Registros)",
-				"sSearch": "Buscar",
-				"oPaginate": {
-					"sFirst": "Inicio",
-					"sPrevious": "Anterior",
-					"sNext": "Siguiente",
-					"sLast": "ÚLTIMO"
-				}
-			},
-			"sPaginationType": "full_numbers",
-			"sScrollX": "100%",
-			"sScrollXInner": "100%",
-			"bScrollCollapse": true
-
-
-
-		});
-
-		var oTable = $('#submenus').dataTable({
-
-			"oLanguage": {
-				"sLengthMenu": "Mostrar _MENU_ REGISTROS POR PÁGINA",
-				"sZeroRecords": "NO EXISTEN MENUS EN LA BASE DE DATOS.",
-				"sInfo": "",
-				"sInfoEmpty": "desde 0 a 0 de 0 records",
-				"sInfoFiltered": "(filtered desde _MAX_ total Registros)",
-				"sSearch": "Buscar",
-				"oPaginate": {
-					"sFirst": "Inicio",
-					"sPrevious": "Anterior",
-					"sNext": "Siguiente",
-					"sLast": "ÚLTIMO"
-				}
-			},
-			"sPaginationType": "full_numbers",
-			"sScrollX": "100%",
-			"sScrollXInner": "100%",
-			"bScrollCollapse": true
-
-
-
-		});
-
-
-		/*new FixedColumns( oTable, {
- 		             
-		              
-					  "iLeftColumns": 0,
-		              "iRightColumns": 1
-					   });*/
-	});
-</script>
-
 
 <div class="card mb-3">
 	<div class="card-header">
