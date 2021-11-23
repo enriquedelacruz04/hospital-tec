@@ -25,14 +25,14 @@ $rutaGaPaciente = "modulos/paciente/ga_paciente.php";
 //========================= Editando o creando
 $rfc = $_GET['rfc'];
 
-$editar = ($rfc != 0) ? true : false;
+$editar = ($rfc != "0") ? true : false;
 
 if ($editar) {
     $rowPaciente = $paciente->getOnePaciente($rfc);
 }
 
 //========================= Datos a rellenar del formulario si esta en editar o valor predeterminado si esta en crear
-$rfc = ($editar) ?  $rowPaciente['rfc'] : '';
+// $rfc = ($editar) ?  $rowPaciente['rfc'] : '';
 $nombre = ($editar) ?  $rowPaciente['nombre'] : '';
 $edad = ($editar) ?  $rowPaciente['edad'] : '';
 $sexo = ($editar) ?  $rowPaciente['sexo'] : '';
@@ -47,6 +47,9 @@ $tipo = ($editar) ?  $rowPaciente['tipo_derecho_habiente'] : '';
 
 
 <div class="card th-card-titulo">
+
+
+    <!-- <?php echo $rfc ?> -->
     <div class="card-header th-card-header">
         <h5 class="card-title "><?= ($editar) ? "MODIFICAR PACIENTE" : "AÑADIR PACIENTE" ?></h5>
     </div>

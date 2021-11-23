@@ -74,7 +74,7 @@ class Doctor
     //========================= Consulta 1 registro 
     public function getOneDoctor($id)
     {
-        $query = "SELECT * FROM $this->tablaNombre WHERE $this->tablaId = $id";
+        $query = "SELECT * FROM $this->tablaNombre WHERE $this->tablaId = '$id'";
         $result = $this->db->consulta($query);
         $numResult = $this->db->num_rows($result);
         $rowResult = $this->db->fetch_assoc($result);
