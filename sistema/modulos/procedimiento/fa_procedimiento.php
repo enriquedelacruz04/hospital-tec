@@ -2,17 +2,28 @@
 require_once("../../clases/conexcion.php");
 require_once("../../clases/class.Sesion.php");
 require_once("../../clases/class.Funciones.php");
+require_once("../../clases/class.Procedimiento.php");
+require_once("../../clases/class.Paciente.php");
+require_once("../../clases/class.TipoProcedimiento.php");
 require_once("../../clases/class.Doctor.php");
-require_once("../../clases/class.Hospital.php");
+require_once("../../clases/class.Insumo.php");
 
 //========================= Funciones
 $db = new MySQL();
 $se = new Sesion();
 $fun = new Funciones();
+
+$procedimiento = new Procedimiento();
+$paciente = new Paciente();
+$tipoProcedimiento = new TipoProcedimiento();
 $doctor = new Doctor();
-$hospital = new Hospital();
+$insumo = new Insumo();
+
+$procedimiento->db = $db;
+$paciente->db = $db;
+$tipoProcedimiento->db = $db;
 $doctor->db = $db;
-$hospital->db = $db;
+$insumo->db = $db;
 
 //========================= Sesion 
 if (!isset($_SESSION['se_SAS'])) {
@@ -21,30 +32,39 @@ if (!isset($_SESSION['se_SAS'])) {
 }
 
 //========================= Rutas
-$rutaViDoctor = "modulos/doctor/vi_doctor.php";
-$rutaFaDoctor = "modulos/doctor/fa_doctor.php";
-$rutaGaDoctor = "modulos/doctor/ga_doctor.php";
+$rutaViProcedimiento = "modulos/procedimiento/vi_procedimiento.php";
+$rutaFaProcedimiento = "modulos/procedimiento/fa_procedimiento.php";
+$rutaGaProcedimiento = "modulos/procedimiento/ga_procedimiento.php";
 
 //========================= Editando o creando
-$cedula = $_GET['cedula'];
+$id = $_GET['id'];
 
-$editar = ($cedula != 0) ? true : false;
+$editar = ($id != 0) ? true : false;
 
 if ($editar) {
-    $rowDoctor = $doctor->getOneDoctor($cedula);
+    $rowProcedimiento = $procedimiento->getOneProcedimiento($id);
 }
 
 //========================= Datos a rellenar del formulario si esta en editar o valor predeterminado si esta en crear
-$cedula = ($editar) ?  $rowDoctor['cedula'] : '';
-$nombre = ($editar) ?  $rowDoctor['nombre'] : '';
-$edad = ($editar) ?  $rowDoctor['edad'] : '';
-$sexo = ($editar) ?  $rowDoctor['sexo'] : '';
-$telefono = ($editar) ?  $rowDoctor['telefono'] : '';
-$especialidad = ($editar) ?  $rowDoctor['especialidad'] : '';
-$hospitalNumero = ($editar) ?  $rowDoctor['hospital_numero'] : '';
+$idPaciente = ($editar) ?  $rowProcedimiento['paciente_rfc'] : '';
+$idTipoProcedimiento = ($editar) ?  $rowProcedimiento['tipo_procedimiento_idtipo_procediento'] : '';
+$idDoctor = ($editar) ?  $rowProcedimiento['doctor_cedula'] : '';
+$idInsumo = ($editar) ?  $rowProcedimiento['insumo_idinsumo'] : '';
+$fecha = ($editar) ?  $rowProcedimiento['fecha'] : '';
+$hora = ($editar) ?  $rowProcedimiento['hora'] : '';
 
-//========================= Nomnre de los  hospitales
-$consultaHospital = $hospital->getAllHospital()
+//========================= Nomnre de los pacientes
+$consultaPaciente = $paciente->getAllPaciente();
+
+//========================= Nombre de los tipos de procedimiento
+$consultaTipoProcedimiento = $tipoProcedimiento->getAllTipoProcedimiento();
+
+//========================= Nombre de los doctores
+$consultaDoctor = $doctor->getAllDoctor();
+
+//========================= Nombre de los insumos
+$consultaInsumo = $insumo->getAllInsumo();
+
 ?>
 
 <!-- //=========================================================== -->
@@ -54,64 +74,100 @@ $consultaHospital = $hospital->getAllHospital()
 
 <div class="card th-card-titulo">
     <div class="card-header th-card-header">
-        <h5 class="card-title "><?= ($editar) ? "MODIFICAR DOCTOR" : "AÑADIR DOCTOR" ?></h5>
+        <h5 class="card-title "><?= ($editar) ? "MODIFICAR PROCEDIMIENTO" : "AÑADIR PROCEDIMIENTO" ?></h5>
     </div>
 </div>
 
 <div class="card th-card-table">
     <div class="card-body p-4">
-        <form id="form-add-doctor" class="mt-4">
+        <form id="form-add-procedimiento" class="mt-4">
             <div class="form-row">
 
 
                 <div class="form-group col-md-6">
-                    <label>CEDULA:</label>
-                    <input type="text" class="form-control" id="viCedula" name="viCedula" value="<?= $cedula ?>">
-                </div>
+                    <label>PACIENTE:</label>
+                    <select class="form-control" id="viPaciente" name="viPaciente">
+                        <option value="Elegir">Elegir</option>
 
-                <div class="form-group col-md-6">
-                    <label>Nombre:</label>
-                    <input type="text" class="form-control" id="viNombre" name="viNombre" value="<?= $nombre ?>">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label>EDAD:</label>
-                    <input type="text" class="form-control" id="viEdad" name="viEdad" value="<?= $edad ?>">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label>SEXO:</label>
-                    <select class="form-control" id="viSexo" name="viSexo">
-                        <option value="1" <?= ($sexo == 1) ? 'selected="selected"' : "" ?>>Hombre</option>
-                        <option value="2" <?= ($sexo == 2) ? 'selected="selected"' : "" ?>>Mujer</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label>Telefono:</label>
-                    <input type="text" class="form-control" id="viTelefono" name="viTelefono" value="<?= $telefono ?>">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label>Especialidad:</label>
-                    <input type="text" class="form-control" id="viEspecialidad" name="viEspecialidad" value="<?= $especialidad ?>">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label>HOSPITAL:</label>
-                    <select class="form-control" id="viHospitalNumero" name="viHospitalNumero">
                         <?php
-                        while ($rowHospital = $db->fetch_assoc($consultaHospital)) {
-                            $rowHospitalNumero = $rowHospital['numero'];
-                            $rowHospitalNombre = $rowHospital['nombre'];
+                        while ($rowPaciente = $db->fetch_assoc($consultaPaciente)) {
+                            $rowPacienteId = $rowPaciente['rfc'];
+                            $rowPacienteNombre = $rowPaciente['nombre'];
                         ?>
-                            <option value="<?= $rowHospitalNumero ?>" <?= ($hospitalNumero == $rowHospitalNumero) ? 'selected="selected"' : ''  ?>>
-                                <?= $rowHospitalNombre ?>
+                            <option value="<?= $rowPacienteId ?>" <?= ($idPaciente == $rowPacienteId) ? 'selected="selected"' : ''  ?>>
+                                <?= $rowPacienteNombre ?>
                             </option>
                         <?php
                         }
                         ?>
                     </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>TIPO PROCEDIMIENTO:</label>
+                    <select class="form-control" id="viTipoProcedimiento" name="viTipoProcedimiento">
+                        <option value="Elegir">Elegir</option>
+
+                        <?php
+                        while ($rowTipoProcedimiento = $db->fetch_assoc($consultaTipoProcedimiento)) {
+                            $rowTipoProcedimientoId = $rowTipoProcedimiento['idtipo_procedimiento'];
+                            $rowTipoProcedimientoNombre = $rowTipoProcedimiento['nombre'];
+                        ?>
+                            <option value="<?= $rowTipoProcedimientoId ?>" <?= ($idTipoProcedimiento == $rowTipoProcedimientoId) ? 'selected="selected"' : ''  ?>>
+                                <?= $rowTipoProcedimientoNombre ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>DOCTOR:</label>
+                    <select class="form-control" id="viDoctor" name="viDoctor">
+                        <option value="Elegir">Elegir</option>
+
+                        <?php
+                        while ($rowDoctor = $db->fetch_assoc($consultaDoctor)) {
+                            $rowDoctorId = $rowDoctor['cedula'];
+                            $rowDoctorNombre = $rowDoctor['nombre'];
+                        ?>
+                            <option value="<?= $rowDoctorId ?>" <?= ($idDoctor == $rowDoctorId) ? 'selected="selected"' : ''  ?>>
+                                <?= $rowDoctorNombre ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>INSUMOS:</label>
+                    <select class="form-control" id="viInsumo" name="viInsumo">
+                        <option value="Elegir">Elegir</option>
+
+                        <?php
+                        while ($rowInsumo = $db->fetch_assoc($consultaInsumo)) {
+                            $rowInsumoId = $rowInsumo['idinsumo'];
+                            $rowInsumoNombre = $rowInsumo['nombre'];
+                        ?>
+                            <option value="<?= $rowInsumoId ?>" <?= ($idInsumo == $rowInsumoId) ? 'selected="selected"' : ''  ?>>
+                                <?= $rowInsumoNombre ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Fecha:</label>
+                    <input type="date" class="form-control" id="viFecha" name="viFecha" value="<?= $fecha ?>">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Hora:</label>
+                    <input type="time" class="form-control" id="viHora" name="viHora" value="<?= $hora ?>">
                 </div>
 
             </div>
@@ -120,11 +176,11 @@ $consultaHospital = $hospital->getAllHospital()
             <div class="form-row">
                 <div class="col-md-12 d-flex justify-content-end">
 
-                    <input type="hidden" id="viId" name="viId" value="<?php echo ($editar) ? "1" : "0" ?>" />
+                    <input type="hidden" id="viId" name="viId" value="<?php echo $id ?>" />
 
-                    <button onClick="GuardarEspecial('form-add-doctor',
-                    '<?= $rutaGaDoctor ?>',
-                    '<?= $rutaViDoctor ?>',
+                    <button onClick="GuardarEspecial('form-add-procedimiento',
+                    '<?= $rutaGaProcedimiento ?>',
+                    '<?= $rutaViProcedimiento ?>',
                     'main')" type="button" class="btn btn-success mt-3"><?= ($editar) ? "ACTUALIZAR" : "GUARDAR" ?></button>
 
                 </div>

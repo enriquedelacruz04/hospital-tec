@@ -31,7 +31,7 @@ $rutaGaProcedimiento = "modulos/procedimiento/ga_procedimiento.php";
     <div class="card-header">
         <h5 class="card-title">PRECEDIMIENTOS</h5>
         <div class="card-botones">
-            <button onClick="aparecermodulos('<?= $rutaFaProcedimiento . "?cedula=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO PRECEDIMIENTO</button>
+            <button onClick="aparecermodulos('<?= $rutaFaProcedimiento . "?id=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO PRECEDIMIENTO</button>
         </div>
     </div>
 </div>
@@ -79,10 +79,10 @@ $rutaGaProcedimiento = "modulos/procedimiento/ga_procedimiento.php";
                             <td align="center">
 
                                 <!-- Editar -->
-                                <button onClick="aparecermodulos('<?= $rutaFaProcedimiento . "?cedula=$cedula" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
+                                <button onClick="aparecermodulos('<?= $rutaFaProcedimiento . "?id=$id" ?>','main');" type="button" class="btn btn-outline-info" title="EDITAR"><i class="fas fa-pencil-alt"></i></button>
 
                                 <!-- Eliminar -->
-                                <button onClick="BorrarDatos('<?= $cedula; ?>','cedula','procedimiento','n','<?= $rutaViProcedimiento ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
+                                <button onClick="BorrarDatos('<?= $id; ?>','idprocedimiento','procedimiento','n','<?= $rutaViProcedimiento ?>','main');" type="button" class="btn btn-outline-danger" title="ELIMINAR"><i class="fas fa-trash-alt"></i></button>
 
                             </td>
                         </tr>

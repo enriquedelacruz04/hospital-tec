@@ -2,14 +2,14 @@
 require_once("../../clases/conexcion.php");
 require_once("../../clases/class.Sesion.php");
 require_once("../../clases/class.Funciones.php");
-require_once("../../clases/class.Doctor.php");
+require_once("../../clases/class.Procedimiento.php");
 
 //========================= Funciones
 $db = new MySQL();
 $se = new Sesion();
 $fun = new Funciones();
-$doctor = new Doctor();
-$doctor->db = $db;
+$procedimiento = new Procedimiento();
+$procedimiento->db = $db;
 
 //========================= Sesion 
 if (!isset($_SESSION['se_SAS'])) {
@@ -25,21 +25,21 @@ try {
     $db->begin();
 
     //========================= Valores que vienen de formulario con ajax
-    $doctor->cedula = $_POST['viCedula'];
-    $doctor->nombre = $_POST['viNombre'];
-    $doctor->edad = $_POST['viEdad'];
-    $doctor->sexo = $_POST['viSexo'];
-    $doctor->telefono = $_POST['viTelefono'];
-    $doctor->especialidad = $_POST['viEspecialidad'];
-    $doctor->hospitalNumero = $_POST['viHospitalNumero'];
+    $procedimiento->id = $_POST['viId'];
+    $procedimiento->paciente = $_POST['viPaciente'];
+    $procedimiento->tipoProcedimeinto = $_POST['viTipoProcedimiento'];
+    $procedimiento->doctor = $_POST['viDoctor'];
+    $procedimiento->insumo = $_POST['viInsumo'];
+    $procedimiento->fecha = $_POST['viFecha'];
+    $procedimiento->hora = $_POST['viHora'];
 
 
     if ($editar == true) {
         //========================= Modificar en la base de datos
-        $doctor->modificarDoctor();
+        $procedimiento->modificarProcedimiento();
     } else {
         //========================= Guardar nuevo en la base de datos
-        $doctor->guardarDoctor();
+        $procedimiento->guardarProcedimiento();
     }
 
     $db->commit();

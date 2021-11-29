@@ -4,14 +4,17 @@ class Procedimiento
     //=========================  Objeto de conexion con la base de datos
     public $db;
 
+    public $id;
+
     //========================= Variables de la DB 
-    public $cedula;
-    public $nombre;
-    public $edad;
-    public $sexo;
-    public $telefono;
-    public $especialidad;
-    public $hospitalNumero;
+    public $fecha;
+    public $hora;
+
+    // id foraneas
+    public $paciente;
+    public $tipoProcedimeinto;
+    public $doctor;
+    public $insumo;
 
     //=========================  Datos de la tabla de la DB
     private $tablaNombre = "procedimiento";
@@ -25,17 +28,16 @@ class Procedimiento
     public function guardarProcedimiento()
     {
         $query = "INSERT INTO $this->tablaNombre
-        	(cedula, nombre, edad, sexo, telefono, especialidad, hospital_numero)
+        	(paciente_rfc, tipo_procedimiento_idtipo_procediento, doctor_cedula, insumo_idinsumo, fecha, hora)
 
         	 VALUES 
         	 (
-        	 '$this->cedula',
-        	 '$this->nombre',
-        	 '$this->edad',
-        	 '$this->sexo',
-        	 '$this->telefono',
-        	 '$this->especialidad',
-        	 '$this->hospitalNumero'
+        	 '$this->paciente',
+        	 '$this->tipoProcedimeinto',
+        	 '$this->doctor',
+        	 '$this->insumo',
+        	 '$this->fecha',
+        	 '$this->hora'
         	 )";
 
         $this->db->consulta($query);
@@ -45,14 +47,14 @@ class Procedimiento
     public function modificarProcedimiento()
     {
         $query = "UPDATE $this->tablaNombre SET 
-		nombre = '$this->nombre',
-		edad = '$this->edad',
-		sexo = '$this->sexo',
-		telefono = '$this->telefono',
-		especialidad = '$this->especialidad',
-		hospital_numero = '$this->hospitalNumero'
+		paciente_rfc = '$this->paciente',
+		tipo_procedimiento_idtipo_procediento = '$this->tipoProcedimeinto',
+		doctor_cedula = '$this->doctor',
+		insumo_idinsumo = '$this->insumo',
+		fecha = '$this->fecha',
+		hora = '$this->hora'
 
-		WHERE $this->tablaId = '$this->cedula'";
+		WHERE $this->tablaId = '$this->id'";
 
         $this->db->consulta($query);
     }
