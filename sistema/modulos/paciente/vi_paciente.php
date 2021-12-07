@@ -31,7 +31,7 @@ $rutaGaPaciente = "modulos/paciente/ga_paciente.php";
     <div class="card-header">
         <h5 class="card-title">PACIENTES</h5>
         <div class="card-botones">
-            <button onClick="aparecermodulos('<?= $rutaFaPaciente . "?rfc='0'"  ?>','main');" type=" button" class="btn btn-info">NUEVO PACIENTE</button>
+            <button onClick="aparecermodulos('<?= $rutaFaPaciente . "?rfc=0"  ?>','main');" type=" button" class="btn btn-info">NUEVO PACIENTE</button>
         </div>
     </div>
 </div>
